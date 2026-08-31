@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "392790768425",
+    "project_id": "iti-project2-andrewbekhiet",
+    "storage_bucket": "iti-project2-andrewbekhiet.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392790768425:android:6fe0a88160d7d6e3e11538",
+        "android_client_info": {
+          "package_name": "com.AndroidQuartz.marquee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAebjdzncqS3fneb7BvtFveR7Vx38sn-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392790768425:android:8960023734145dade11538",
+        "android_client_info": {
+          "package_name": "com.AndroidQuartz.project2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAebjdzncqS3fneb7BvtFveR7Vx38sn-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
