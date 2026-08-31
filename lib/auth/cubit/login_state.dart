@@ -1,16 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-sealed class LoginState with Equatable {
-  final String email;
-  final String password;
-
+sealed class const LoginState({
+  required final String email,
+  required final String password,
+}) with Equatable {
   @override
   List<Object?> get props => [email, password];
-
-  const LoginState({
-    required this.email,
-    required this.password,
-  });
 
   LoginState copyWith({
     String? email,
@@ -21,30 +16,23 @@ sealed class LoginState with Equatable {
   );
 }
 
-final class LoginStateEmpty extends LoginState {
-  const LoginStateEmpty() : super(email: '', password: '');
+final class const LoginStateEmpty() extends LoginState {
+  this : super(email: '', password: '');
 }
 
-final class LoginStateValid extends LoginState {
-  const LoginStateValid({
-    required super.email,
-    required super.password,
-  });
-}
+final class const LoginStateValid({
+  required super.email,
+  required super.password,
+}) extends LoginState;
 
-final class LoginStateInvalid extends LoginState {
-  final String? emailError;
-  final String? passwordError;
-
+final class const LoginStateInvalid({
+  required super.email,
+  required super.password,
+  final String? emailError,
+  final String? passwordError,
+}) extends LoginState {
   @override
   List<Object?> get props => [email, password, emailError, passwordError];
-
-  const LoginStateInvalid({
-    required super.email,
-    required super.password,
-    this.emailError,
-    this.passwordError,
-  });
 
   @override
   LoginState copyWith({
@@ -60,24 +48,18 @@ final class LoginStateInvalid extends LoginState {
   );
 }
 
-final class LoginStateLoading extends LoginState {
-  const LoginStateLoading({
-    required super.email,
-    required super.password,
-  });
-}
+final class const LoginStateLoading({
+  required super.email,
+  required super.password,
+}) extends LoginState;
 
-final class LoginStateError extends LoginState {
-  final String errorMessage;
-
+final class const LoginStateError({
+  required super.email,
+  required super.password,
+  required final String errorMessage,
+}) extends LoginState {
   @override
   List<Object?> get props => [email, password, errorMessage];
-
-  const LoginStateError({
-    required super.email,
-    required super.password,
-    required this.errorMessage,
-  });
 
   @override
   LoginState copyWith({

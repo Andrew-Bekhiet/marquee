@@ -1,29 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:material_ui/material_ui.dart';
 
-class PasswordField extends StatefulWidget {
-  final String labelText;
-  final String? errorText;
-  final TextInputAction textInputAction;
-  final List<String> autofillHints;
-  final ValueChanged<String>? onChanged;
-  final ValueChanged<String>? onFieldSubmitted;
-
-  const PasswordField({
-    super.key,
-    this.labelText = 'Password',
-    this.errorText,
-    this.textInputAction = TextInputAction.done,
-    this.autofillHints = const [AutofillHints.password],
-    this.onChanged,
-    this.onFieldSubmitted,
-  });
-
+class const PasswordField({
+  super.key,
+  final String labelText = 'Password',
+  final String? errorText,
+  final TextInputAction textInputAction = TextInputAction.done,
+  final List<String> autofillHints = const [AutofillHints.password],
+  final ValueChanged<String>? onChanged,
+  final ValueChanged<String>? onFieldSubmitted,
+}) extends StatefulWidget {
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordField> {
+class _PasswordFieldState() extends State<PasswordField> {
   bool _isPasswordVisible = false;
 
   @override

@@ -1,22 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:marquee/shared/widgets/logo_widget.dart';
 import 'package:marquee/theme/marquee_theme.dart';
+import 'package:material_ui/material_ui.dart';
 
-class AuthScreenShell extends StatelessWidget {
+class const AuthScreenShell({
+  required final Widget body,
+  required final String title,
+  required final String subtitle,
+  super.key,
+  final Widget? footer,
+}) extends StatelessWidget {
   static const double _maxContentWidth = 420.0;
-
-  final Widget body;
-  final String title;
-  final String subtitle;
-  final Widget? footer;
-
-  const AuthScreenShell({
-    required this.body,
-    required this.title,
-    required this.subtitle,
-    super.key,
-    this.footer,
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marquee/auth/cubit/signup_cubit.dart';
 import 'package:marquee/auth/cubit/signup_state.dart';
@@ -6,10 +5,9 @@ import 'package:marquee/auth/repositories/auth_repository.dart';
 import 'package:marquee/auth/screens/login_screen.dart';
 import 'package:marquee/auth/widgets/auth_screen_shell.dart';
 import 'package:marquee/auth/widgets/signup_form_controls.dart';
+import 'package:material_ui/material_ui.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
-
+class const SignupScreen({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;

@@ -1,4 +1,4 @@
-class AuthException implements Exception {
+class const AuthException(final String message) implements Exception {
   static const Map<String, String> _messagesByCode = {
     'invalid-email': 'That email address is not valid',
     'user-disabled': 'This account has been disabled',
@@ -12,11 +12,7 @@ class AuthException implements Exception {
     'network-request-failed': 'No internet connection',
   };
 
-  final String message;
-
-  const AuthException(this.message);
-
-  factory AuthException.fromCode(String code) =>
+  factory fromCode(String code) =>
       AuthException(_messagesByCode[code] ?? 'Authentication failed.');
 
   @override

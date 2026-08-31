@@ -12,3 +12,11 @@ plugins:
 linter:
   rules:
     public_member_api_docs: false
+    empty_container_bodies: true
+    initialize_in_field_declaration: true
+    simple_directive_paths: true
+    unnecessary_const_in_enum_constructor: true
+    unnecessary_primary_constructor_body: true
+    unnecessary_type_name_in_constructor: true
+    use_declaring_parameters: true
+    use_primary_constructors: true

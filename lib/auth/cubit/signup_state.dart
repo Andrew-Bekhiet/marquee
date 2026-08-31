@@ -1,18 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-sealed class SignupState with Equatable {
-  final String email;
-  final String password;
-  final String confirmPassword;
-
+sealed class const SignupState({
+  required final String email,
+  required final String password,
+  required final String confirmPassword,
+}) with Equatable {
   @override
   List<Object?> get props => [email, password, confirmPassword];
-
-  const SignupState({
-    required this.email,
-    required this.password,
-    required this.confirmPassword,
-  });
 
   SignupState copyWith({
     String? email,
@@ -25,24 +19,24 @@ sealed class SignupState with Equatable {
   );
 }
 
-final class SignupStateEmpty extends SignupState {
-  const SignupStateEmpty()
-    : super(email: '', password: '', confirmPassword: '');
+final class const SignupStateEmpty() extends SignupState {
+  this : super(email: '', password: '', confirmPassword: '');
 }
 
-final class SignupStateValid extends SignupState {
-  const SignupStateValid({
-    required super.email,
-    required super.password,
-    required super.confirmPassword,
-  });
-}
+final class const SignupStateValid({
+  required super.email,
+  required super.password,
+  required super.confirmPassword,
+}) extends SignupState;
 
-final class SignupStateInvalid extends SignupState {
-  final String? emailError;
-  final String? passwordError;
-  final String? confirmPasswordError;
-
+final class const SignupStateInvalid({
+  required super.email,
+  required super.password,
+  required super.confirmPassword,
+  final String? emailError,
+  final String? passwordError,
+  final String? confirmPasswordError,
+}) extends SignupState {
   @override
   List<Object?> get props => [
     email,
@@ -52,15 +46,6 @@ final class SignupStateInvalid extends SignupState {
     passwordError,
     confirmPasswordError,
   ];
-
-  const SignupStateInvalid({
-    required super.email,
-    required super.password,
-    required super.confirmPassword,
-    this.emailError,
-    this.passwordError,
-    this.confirmPasswordError,
-  });
 
   @override
   SignupState copyWith({
@@ -80,26 +65,20 @@ final class SignupStateInvalid extends SignupState {
   );
 }
 
-final class SignupStateLoading extends SignupState {
-  const SignupStateLoading({
-    required super.email,
-    required super.password,
-    required super.confirmPassword,
-  });
-}
+final class const SignupStateLoading({
+  required super.email,
+  required super.password,
+  required super.confirmPassword,
+}) extends SignupState;
 
-final class SignupStateError extends SignupState {
-  final String errorMessage;
-
+final class const SignupStateError({
+  required super.email,
+  required super.password,
+  required super.confirmPassword,
+  required final String errorMessage,
+}) extends SignupState {
   @override
   List<Object?> get props => [email, password, confirmPassword, errorMessage];
-
-  const SignupStateError({
-    required super.email,
-    required super.password,
-    required super.confirmPassword,
-    required this.errorMessage,
-  });
 
   @override
   SignupState copyWith({

@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marquee/auth/cubit/login_cubit.dart';
 import 'package:marquee/auth/cubit/login_state.dart';
 import 'package:marquee/auth/widgets/password_field.dart';
+import 'package:material_ui/material_ui.dart';
 
-class LoginFormControls extends StatelessWidget {
-  const LoginFormControls({super.key});
-
+class const LoginFormControls({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.watch<LoginCubit>();

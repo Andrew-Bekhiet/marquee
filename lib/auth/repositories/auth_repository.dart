@@ -1,6 +1,6 @@
 import 'package:marquee/auth/models/user.dart';
 
-abstract class AuthRepository {
+abstract class AuthRepository() {
   Stream<User?> get user;
 
   User? get currentUser;

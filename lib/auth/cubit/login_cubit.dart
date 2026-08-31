@@ -3,10 +3,9 @@ import 'package:marquee/auth/cubit/login_state.dart';
 import 'package:marquee/auth/repositories/auth_repository.dart';
 import 'package:marquee/auth/utils/login_signup_validation.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  final AuthRepository _authRepository;
-
-  LoginCubit(this._authRepository) : super(const LoginStateEmpty());
+class LoginCubit(final AuthRepository _authRepository)
+    extends Cubit<LoginState> {
+  this : super(const LoginStateEmpty());
 
   void onEmailChanged(String email) {
     emit(state.copyWith(email: email));

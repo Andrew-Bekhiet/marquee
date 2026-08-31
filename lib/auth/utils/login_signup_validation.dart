@@ -1,4 +1,4 @@
-abstract final class LoginSignupValidation {
+abstract final class LoginSignupValidation._() {
   static const _minPasswordLength = 8;
   static final _emailRegex = RegExp(r'^[^@]+@[^.]+(\.[^.]+)+$');
 

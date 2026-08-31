@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as legacy;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:material_ui/material_ui.dart';
 
-abstract final class MarqueeTheme {
+abstract final class const MarqueeTheme._() {
   static const Color primary = Color(0xFFEAC362);
 
   static const BorderRadius fieldRadius = BorderRadius.all(
@@ -34,9 +35,15 @@ abstract final class MarqueeTheme {
   static final ThemeData theme = _createTheme();
 
   static ThemeData _createTheme() {
-    final textTheme = GoogleFonts.spaceGroteskTextTheme(
-      ThemeData.dark().textTheme,
-    ).apply(bodyColor: _scheme.onSurface, displayColor: _scheme.onSurface);
+    final textTheme =
+        GoogleFonts.spaceGroteskTextTheme(
+              ThemeData.dark().textTheme.toLegacy(),
+            )
+            .apply(
+              bodyColor: _scheme.onSurface,
+              displayColor: _scheme.onSurface,
+            )
+            .toModern();
 
     return ThemeData(
       colorScheme: _scheme,
@@ -106,6 +113,50 @@ abstract final class MarqueeTheme {
       fontWeight: fontWeight,
       color: color ?? _scheme.onSurface,
       letterSpacing: letterSpacing,
+    );
+  }
+}
+
+extension LegacyTextThemeToModern on legacy.TextTheme {
+  TextTheme toModern() {
+    return TextTheme(
+      displayLarge: displayLarge,
+      displayMedium: displayMedium,
+      displaySmall: displaySmall,
+      headlineLarge: headlineLarge,
+      headlineMedium: headlineMedium,
+      headlineSmall: headlineSmall,
+      titleLarge: titleLarge,
+      titleMedium: titleMedium,
+      titleSmall: titleSmall,
+      bodyLarge: bodyLarge,
+      bodyMedium: bodyMedium,
+      bodySmall: bodySmall,
+      labelLarge: labelLarge,
+      labelMedium: labelMedium,
+      labelSmall: labelSmall,
+    );
+  }
+}
+
+extension ModernTextThemeToLegacy on TextTheme {
+  legacy.TextTheme toLegacy() {
+    return legacy.TextTheme(
+      displayLarge: displayLarge,
+      displayMedium: displayMedium,
+      displaySmall: displaySmall,
+      headlineLarge: headlineLarge,
+      headlineMedium: headlineMedium,
+      headlineSmall: headlineSmall,
+      titleLarge: titleLarge,
+      titleMedium: titleMedium,
+      titleSmall: titleSmall,
+      bodyLarge: bodyLarge,
+      bodyMedium: bodyMedium,
+      bodySmall: bodySmall,
+      labelLarge: labelLarge,
+      labelMedium: labelMedium,
+      labelSmall: labelSmall,
     );
   }
 }

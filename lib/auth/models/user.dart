@@ -1,11 +1,5 @@
-class User {
-  final String uid;
-  final String email;
-  final String name;
-
-  User({
-    required this.uid,
-    required this.email,
-    required this.name,
-  });
-}
+class User({
+  required final String uid,
+  required final String email,
+  required final String name,
+});
