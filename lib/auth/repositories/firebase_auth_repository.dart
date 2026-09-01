@@ -9,7 +9,8 @@ class FirebaseAuthRepository({firebase.FirebaseAuth? firebaseAuth})
       firebaseAuth ?? firebase.FirebaseAuth.instance;
 
   @override
-  Stream<User?> get user => _firebaseAuth.userChanges().map(_toDomainUser);
+  Stream<User?> get userStream =>
+      _firebaseAuth.userChanges().map(_toDomainUser);
 
   @override
   User? get currentUser => _toDomainUser(_firebaseAuth.currentUser);

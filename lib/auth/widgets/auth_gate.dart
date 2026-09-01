@@ -12,7 +12,7 @@ class const AuthGate({super.key}) extends StatelessWidget {
     final authRepository = context.read<AuthRepository>();
 
     return StreamBuilder<User?>(
-      stream: authRepository.user,
+      stream: authRepository.userStream,
       initialData: authRepository.currentUser,
       builder: (_, snapshot) =>
           snapshot.data == null ? const LoginScreen() : const HomeScreen(),
