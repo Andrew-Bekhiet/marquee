@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marquee/auth/cubit/authentication_cubit.dart';
 import 'package:marquee/auth/repositories/auth_repository.dart';
 import 'package:marquee/auth/repositories/firebase_auth_repository.dart';
 import 'package:marquee/firebase_options.dart';
@@ -16,7 +17,11 @@ Future<void> main() async {
   runApp(
     RepositoryProvider<AuthRepository>(
       create: (_) => FirebaseAuthRepository(),
-      child: const MarqueeApp(),
+      child: BlocProvider(
+        create: (context) =>
+            AuthenticationCubit(context.read<AuthRepository>()),
+        child: const MarqueeApp(),
+      ),
     ),
   );
 }

@@ -1,4 +1,4 @@
-import 'package:marquee/auth/repositories/auth_repository.dart';
+import 'package:marquee/auth/cubit/authentication_cubit.dart';
 import 'package:marquee/shared/navigation/marquee_router.dart';
 import 'package:marquee/theme/marquee_theme.dart';
 import 'package:material_ui/material_ui.dart';
@@ -10,7 +10,7 @@ class const MarqueeApp({super.key}) extends StatefulWidget {
 }
 
 class _MarqueeAppState() extends State<MarqueeApp> {
-  late final router = MarqueeRouter(context.read<AuthRepository>());
+  late final router = MarqueeRouter(context.read<AuthenticationCubit>());
 
   @override
   Widget build(BuildContext context) {

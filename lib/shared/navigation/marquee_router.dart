@@ -1,15 +1,15 @@
 import 'package:kaisel/kaisel.dart';
-import 'package:marquee/auth/repositories/auth_repository.dart';
+import 'package:marquee/auth/cubit/authentication_cubit.dart';
 import 'package:marquee/shared/navigation/marquee_route.dart';
 import 'package:marquee/shared/utils/stream_as_listenable.dart';
 
-class MarqueeRouter(final AuthRepository authRepository) {
+class MarqueeRouter(final AuthenticationCubit authenticationCubit) {
   late final routerConfig = KaiselRouterConfig<MarqueeRoute>(
     androidPredictiveBack: true,
-    initial: authRepository.currentUser == null
+    initial: authenticationCubit.currentUser == null
         ? const LoginRoute()
         : const HomeRoute(),
-    reevaluateOn: authRepository.userStream.asListenable(),
+    reevaluateOn: authenticationCubit.stream.asListenable(),
     guards: [requireAuthGuard],
     builder: (context, route) => route.build(context),
   );
@@ -20,7 +20,7 @@ class MarqueeRouter(final AuthRepository authRepository) {
   ) {
     final proposedTop = proposed.first;
 
-    final currentUser = authRepository.currentUser;
+    final currentUser = authenticationCubit.currentUser;
     if (currentUser == null &&
         proposedTop is! LoginRoute &&
         proposedTop is! SignupRoute) {
