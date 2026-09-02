@@ -42,4 +42,10 @@ abstract class TMDBApi {
     @Path('id') int id, {
     @Query('page') int page = 1,
   });
+
+  @GET('/search/movie')
+  Future<MoviesResponse> searchMovies(
+    @Query('query') String query, {
+    @Query('page') int page = 1,
+  });
 }

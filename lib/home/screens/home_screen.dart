@@ -16,10 +16,6 @@ class const HomeScreen({super.key}) extends StatelessWidget {
   static final _shortDateFormat = DateFormat('EEE d MMM');
   static final _compactNumberFormat = NumberFormat.compact();
 
-  static void _noDestinationYet() {
-    // TODO: wire up when a destination screen exists.
-  }
-
   @override
   Widget build(BuildContext context) {
     final colorScheme = ColorScheme.of(context);
@@ -41,7 +37,7 @@ class const HomeScreen({super.key}) extends StatelessWidget {
           HomeStateLoading() || HomeStateError() => null,
           HomeStateLoaded() => HomeHeader(
             dateLabel: _shortDateFormat.format(DateTime.now()).toUpperCase(),
-            onSearch: _noDestinationYet,
+            onSearch: () => context.push(const SearchRoute()),
             onSignOut: context.read<AuthenticationCubit>().logout,
           ),
         },

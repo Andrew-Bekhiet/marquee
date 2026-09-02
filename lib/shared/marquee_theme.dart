@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' as legacy;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/shared/widgets/marquee_back_button.dart';
 import 'package:material_ui/material_ui.dart';
 
 abstract final class const MarqueeTheme._() {
@@ -13,6 +14,9 @@ abstract final class const MarqueeTheme._() {
   );
   static const BorderRadius buttonRadius = BorderRadius.all(
     Radius.circular(9.0),
+  );
+  static const BorderRadius thumbnailRadius = BorderRadius.all(
+    Radius.circular(7.0),
   );
 
   static const double wordmarkTracking = 4.0;
@@ -169,6 +173,9 @@ abstract final class const MarqueeTheme._() {
         shape: const RoundedRectangleBorder(
           borderRadius: fieldRadius,
         ),
+      ),
+      actionIconTheme: ActionIconThemeData(
+        backButtonIconBuilder: (_) => const MarqueeBackButton(),
       ),
     );
   }

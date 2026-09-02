@@ -1,5 +1,5 @@
 import 'package:boxy/boxy.dart';
-import 'package:kaisel/kaisel.dart';
+import 'package:marquee/home/widgets/circle_icon_button.dart';
 import 'package:marquee/home/widgets/favorite_button.dart';
 import 'package:marquee/movies/models/movie.dart';
 import 'package:marquee/movies/utils/movie_display.dart';
@@ -9,6 +9,7 @@ import 'package:marquee/movies/widgets/movie_hero_backdrop.dart';
 import 'package:marquee/movies/widgets/movie_poster_image.dart';
 import 'package:marquee/movies/widgets/movie_rating_pill.dart';
 import 'package:marquee/shared/marquee_theme.dart';
+import 'package:marquee/shared/widgets/marquee_back_button.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -46,8 +47,6 @@ class const MovieDetailsAppBarContent({
   super.key,
 }) extends StatelessWidget {
   static const double _scrimAlpha = 0.45;
-  static const double _iconButtonSize = 40;
-  static const double _iconSize = 20;
   static const double _posterRadius = 12;
   static const double _posterBorderWidth = 2;
   static const double _metaLetterSpacing = 0.5;
@@ -66,11 +65,10 @@ class const MovieDetailsAppBarContent({
         ) ??
         colorScheme.onSurface;
 
-    final iconButtonStyle = IconButton.styleFrom(
-      shape: const CircleBorder(),
-      fixedSize: const Size.square(_iconButtonSize),
-      backgroundColor: colorScheme.scrim.withValues(alpha: _scrimAlpha),
-      iconSize: _iconSize,
+    final iconButtonStyle = CircleIconButton.defaultButtonStyle.copyWith(
+      backgroundColor: WidgetStatePropertyAll(
+        colorScheme.scrim.withValues(alpha: _scrimAlpha),
+      ),
     );
 
     final titleStyle = textTheme.titleLarge?.copyWith(color: foregroundColor);
@@ -150,12 +148,9 @@ class const MovieDetailsAppBarContent({
         ),
         BoxyId(
           id: MovieAppBarSlot.leading,
-          child: IconButton(
-            icon: const Icon(Symbols.arrow_back),
-            tooltip: 'Back',
-            color: foregroundColor,
-            onPressed: context.pop,
-            style: iconButtonStyle,
+          child: MarqueeBackButton(
+            foregroundColor: foregroundColor,
+            iconButtonStyle: iconButtonStyle,
           ),
         ),
         BoxyId(

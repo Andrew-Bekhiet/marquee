@@ -29,6 +29,12 @@ class TmdbMoviesRepository(final TMDBApi _api) implements MoviesRepository {
         () => _api.similarMovies(id, page: page),
       );
 
+  @override
+  Future<MoviesResponse> searchMovies(String query, {int page = 1}) =>
+      _catchAndConvertToDomainException(
+        () => _api.searchMovies(query, page: page),
+      );
+
   Future<T> _catchAndConvertToDomainException<T>(
     Future<T> Function() action,
   ) async {

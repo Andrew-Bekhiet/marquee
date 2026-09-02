@@ -12,4 +12,6 @@ abstract class const MoviesRepository() {
   Future<CreditsResponse> movieCredits(int id);
 
   Future<MoviesResponse> similarMovies(int id, {int page = 1});
+
+  Future<MoviesResponse> searchMovies(String query, {int page = 1});
 }
