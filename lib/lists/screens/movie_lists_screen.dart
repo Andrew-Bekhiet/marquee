@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kaisel/kaisel.dart';
-import 'package:marquee/home/widgets/home_navigation_bar.dart';
 import 'package:marquee/home/widgets/movies_grid.dart';
 import 'package:marquee/lists/cubit/movie_lists_cubit.dart';
 import 'package:marquee/lists/cubit/movie_lists_state.dart';
@@ -71,12 +70,6 @@ class const MovieListsScreen({super.key}) extends StatelessWidget {
             },
           ),
         ],
-      ),
-      bottomNavigationBar: HomeNavigationBar(
-        selectedIndex: 1,
-        onDestinationSelected: (index) {
-          if (index == 0) context.pushOrReplaceTop(const HomeRoute());
-        },
       ),
     );
   }

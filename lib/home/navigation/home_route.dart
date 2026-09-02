@@ -1,6 +1,6 @@
 part of 'package:marquee/shared/navigation/marquee_route.dart';
 
-final class const HomeRoute() extends MarqueeRoute {
+final class const HomeRoute() extends HomeBranchRoute {
   @override
   Widget build(BuildContext context) => BlocProvider(
     create: (context) => HomeCubit(

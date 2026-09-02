@@ -8,7 +8,7 @@ class MarqueeRouter(final AuthenticationCubit authenticationCubit) {
     androidPredictiveBack: true,
     initial: authenticationCubit.currentUser == null
         ? const LoginRoute()
-        : const HomeRoute(),
+        : const HomeShellRoute(),
     reevaluateOn: authenticationCubit.stream.asListenable(),
     guards: [requireAuthGuard],
     builder: (context, route) => route.build(context),
@@ -27,7 +27,7 @@ class MarqueeRouter(final AuthenticationCubit authenticationCubit) {
       return [const LoginRoute()];
     } else if (currentUser != null &&
         proposed.any((route) => route is LoginRoute || route is SignupRoute)) {
-      return [const HomeRoute()];
+      return [const HomeShellRoute()];
     }
 
     return proposed;

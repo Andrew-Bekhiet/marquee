@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kaisel/kaisel.dart';
 import 'package:marquee/auth/cubit/login_cubit.dart';
@@ -17,6 +16,8 @@ import 'package:marquee/movies/repositories/movies_repository.dart';
 import 'package:marquee/movies/screens/movie_details_screen.dart';
 import 'package:marquee/search/cubit/search_cubit.dart';
 import 'package:marquee/search/screens/search_screen.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:material_ui/material_ui.dart';
 
 part 'package:marquee/auth/navigation/login_route.dart';
 part 'package:marquee/auth/navigation/signup_route.dart';
@@ -24,7 +25,16 @@ part 'package:marquee/home/navigation/home_route.dart';
 part 'package:marquee/lists/navigation/movie_lists_route.dart';
 part 'package:marquee/movies/navigation/movie_details_route.dart';
 part 'package:marquee/search/navigation/search_route.dart';
+part 'package:marquee/shared/navigation/home_shell_route.dart';
 
 sealed class const MarqueeRoute() extends KaiselRoute {
+  Widget build(BuildContext context);
+}
+
+sealed class const HomeBranchRoute() extends KaiselRoute {
+  Widget build(BuildContext context);
+}
+
+sealed class const ListsBranchRoute() extends KaiselRoute {
   Widget build(BuildContext context);
 }

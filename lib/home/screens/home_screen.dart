@@ -6,7 +6,6 @@ import 'package:marquee/home/cubit/home_cubit.dart';
 import 'package:marquee/home/cubit/home_state.dart';
 import 'package:marquee/home/widgets/featured_movie_widget.dart';
 import 'package:marquee/home/widgets/home_header.dart';
-import 'package:marquee/home/widgets/home_navigation_bar.dart';
 import 'package:marquee/home/widgets/movies_grid.dart';
 import 'package:marquee/shared/marquee_theme.dart';
 import 'package:marquee/shared/navigation/marquee_route.dart';
@@ -103,13 +102,6 @@ class const HomeScreen({super.key}) extends StatelessWidget {
               ],
             ),
         },
-        // TODO: refactor to use kaisel shell route
-        bottomNavigationBar: HomeNavigationBar(
-          selectedIndex: 0,
-          onDestinationSelected: (index) {
-            if (index == 1) context.pushOrReplaceTop(const MovieListsRoute());
-          },
-        ),
       ),
     );
   }
