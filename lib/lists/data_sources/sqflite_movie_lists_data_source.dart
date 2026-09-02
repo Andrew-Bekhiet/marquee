@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:marquee/lists/data_sources/movie_list_entries_schema.dart';
 import 'package:marquee/lists/data_sources/movie_lists_data_source.dart';
 import 'package:marquee/lists/models/movie_list.dart';
 import 'package:marquee/movies/models/movie.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 class SqfliteMovieListsDataSource(final Database _database)
     implements MovieListsDataSource {
@@ -12,7 +14,13 @@ class SqfliteMovieListsDataSource(final Database _database)
   static const _databaseVersion = 2;
 
   static Future<SqfliteMovieListsDataSource> open() async {
-    final path = join(await getDatabasesPath(), 'movie_lists.db');
+    final String path;
+    if (kIsWeb) {
+      databaseFactory = databaseFactoryFfiWeb;
+      path = 'movie_lists.db';
+    } else {
+      path = join(await getDatabasesPath(), 'movie_lists.db');
+    }
 
     final database = await openDatabase(
       path,

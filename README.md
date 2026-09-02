@@ -15,6 +15,7 @@ A flutter project that displays movies from [The Movie Database](https://www.the
    cd marquee
    flutter pub get
    dart run build_runner build
+   dart run sqflite_common_ffi_web:setup
    ```
 
 3. Follow the [TMDB getting started guide](https://developer.themoviedb.org/docs/getting-started) to get an API Read Access Token.
