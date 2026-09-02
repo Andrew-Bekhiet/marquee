@@ -9,9 +9,8 @@ class const MoviesGrid({
   final ValueChanged<Movie>? onMovieTap,
   super.key,
 }) extends StatelessWidget {
-  static const int _crossAxisCount = 3;
   static const double _spacing = 11;
-  static const double _captionHeight = 39;
+  static const double _captionHeight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,8 @@ class const MoviesGrid({
     final aspectRatioWithCaption =
         cardSize.posterWidth / (posterHeight + _captionHeight);
 
-    final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: _crossAxisCount,
+    final gridDelegate = SliverGridDelegateWithMaxCrossAxisExtent(
+      maxCrossAxisExtent: cardSize.posterWidth,
       crossAxisSpacing: _spacing,
       mainAxisSpacing: _spacing,
       childAspectRatio: aspectRatioWithCaption,
