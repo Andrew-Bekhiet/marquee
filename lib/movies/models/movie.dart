@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:marquee/movies/models/genre.dart';
+import 'package:marquee/movies/utils/tmdb_image_url.dart';
 
 part 'movie.g.dart';
 
@@ -22,21 +23,13 @@ class const Movie({
   final List<Genre>? genres,
   final int? runtime,
 }) {
-  static const _tmdbMovieImageBaseUrl = 'https://image.tmdb.org/t/p';
-
   factory fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieToJson(this);
 
-  String? posterUrl({int width = 500}) {
-    if (posterPath case null || '') return null;
+  String? posterUrl({int width = 500}) =>
+      TmdbImageUrl.forPath(posterPath, width: width);
 
-    return '$_tmdbMovieImageBaseUrl/w$width$posterPath';
-  }
-
-  String? backdropUrl({int width = 780}) {
-    if (backdropPath case null || '') return null;
-
-    return '$_tmdbMovieImageBaseUrl/w$width$backdropPath';
-  }
+  String? backdropUrl({int width = 780}) =>
+      TmdbImageUrl.forPath(backdropPath, width: width);
 }

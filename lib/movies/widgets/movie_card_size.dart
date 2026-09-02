@@ -4,18 +4,28 @@ import 'package:material_ui/material_ui.dart';
 enum MovieCardSize({
   required final double posterWidth,
   required final bool showsCaption,
+  required final bool showsRating,
   required final double codeFontSize,
   required final BorderRadius posterRadius,
 }) {
   big(
     posterWidth: 132,
     showsCaption: false,
+    showsRating: true,
     codeFontSize: 20,
     posterRadius: MarqueeTheme.fieldRadius,
   ),
   medium(
     posterWidth: 116,
     showsCaption: true,
+    showsRating: true,
+    codeFontSize: 13,
+    posterRadius: MarqueeTheme.posterRadius,
+  ),
+  small(
+    posterWidth: 92,
+    showsCaption: true,
+    showsRating: false,
     codeFontSize: 13,
     posterRadius: MarqueeTheme.posterRadius,
   );

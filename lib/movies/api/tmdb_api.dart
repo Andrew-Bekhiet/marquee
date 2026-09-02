@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:marquee/movies/models/credits_response.dart';
 import 'package:marquee/movies/models/movie.dart';
 import 'package:marquee/movies/models/movies_response.dart';
 import 'package:retrofit/retrofit.dart';
@@ -32,4 +33,13 @@ abstract class TMDBApi {
 
   @GET('/movie/{id}')
   Future<Movie> movieDetails(@Path('id') int id);
+
+  @GET('/movie/{id}/credits')
+  Future<CreditsResponse> movieCredits(@Path('id') int id);
+
+  @GET('/movie/{id}/similar')
+  Future<MoviesResponse> similarMovies(
+    @Path('id') int id, {
+    @Query('page') int page = 1,
+  });
 }

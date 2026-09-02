@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:marquee/home/utils/movie_display.dart';
-import 'package:marquee/home/widgets/movie_card_size.dart';
-import 'package:marquee/home/widgets/movie_poster_fallback.dart';
 import 'package:marquee/movies/models/movie.dart';
+import 'package:marquee/movies/utils/movie_display.dart';
+import 'package:marquee/movies/widgets/movie_card_size.dart';
+import 'package:marquee/movies/widgets/movie_poster_fallback.dart';
 import 'package:material_ui/material_ui.dart';
 
 class const MoviePosterImage({

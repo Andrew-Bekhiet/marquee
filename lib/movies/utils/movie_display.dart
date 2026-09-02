@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:marquee/movies/models/movie.dart';
 
 extension MovieDisplay on Movie {
@@ -12,7 +14,7 @@ extension MovieDisplay on Movie {
     final stripped = title.replaceFirst(_leadingArticle, '');
     final letters = stripped.replaceAll(_nonLetter, '').toUpperCase();
 
-    return letters.substring(0, _posterCodeLength);
+    return letters.substring(0, min(letters.length, _posterCodeLength));
   }
 
   String get runtimeLabel => switch (runtime) {

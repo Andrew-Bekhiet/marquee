@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:marquee/movies/api/tmdb_api.dart';
+import 'package:marquee/movies/models/credits_response.dart';
 import 'package:marquee/movies/models/movie.dart';
 import 'package:marquee/movies/models/movies_exception.dart';
 import 'package:marquee/movies/models/movies_response.dart';
@@ -17,6 +18,16 @@ class TmdbMoviesRepository(final TMDBApi _api) implements MoviesRepository {
   @override
   Future<Movie> movieDetails(int id) =>
       _catchAndConvertToDomainException(() => _api.movieDetails(id));
+
+  @override
+  Future<CreditsResponse> movieCredits(int id) =>
+      _catchAndConvertToDomainException(() => _api.movieCredits(id));
+
+  @override
+  Future<MoviesResponse> similarMovies(int id, {int page = 1}) =>
+      _catchAndConvertToDomainException(
+        () => _api.similarMovies(id, page: page),
+      );
 
   Future<T> _catchAndConvertToDomainException<T>(
     Future<T> Function() action,

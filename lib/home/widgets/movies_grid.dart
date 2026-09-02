@@ -1,6 +1,6 @@
-import 'package:marquee/home/widgets/movie_card.dart';
-import 'package:marquee/home/widgets/movie_card_size.dart';
 import 'package:marquee/movies/models/movie.dart';
+import 'package:marquee/movies/widgets/movie_card.dart';
+import 'package:marquee/movies/widgets/movie_card_size.dart';
 import 'package:material_ui/material_ui.dart';
 
 class const MoviesGrid({

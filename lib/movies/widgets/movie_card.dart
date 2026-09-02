@@ -1,7 +1,7 @@
-import 'package:marquee/home/utils/movie_display.dart';
-import 'package:marquee/home/widgets/movie_card_size.dart';
-import 'package:marquee/home/widgets/movie_poster_image.dart';
 import 'package:marquee/movies/models/movie.dart';
+import 'package:marquee/movies/utils/movie_display.dart';
+import 'package:marquee/movies/widgets/movie_card_size.dart';
+import 'package:marquee/movies/widgets/movie_poster_image.dart';
 import 'package:marquee/shared/marquee_theme.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -28,10 +28,10 @@ class const MovieCard({
       return SizedBox(width: size.posterWidth, child: posterImage);
     }
 
-    final runtime = movie.runtimeLabel;
-    final text = runtime.isEmpty
-        ? '★ ${movie.ratingLabel}'
-        : '★ ${movie.ratingLabel} · $runtime';
+    final ratingText = switch (movie.runtimeLabel) {
+      '' => '★ ${movie.ratingLabel}',
+      _ => '★ ${movie.ratingLabel} · ${movie.runtimeLabel}',
+    };
 
     return SizedBox(
       width: size.posterWidth,
@@ -46,13 +46,15 @@ class const MovieCard({
             overflow: TextOverflow.ellipsis,
             style: textTheme.labelLarge,
           ),
-          const SizedBox(height: 6),
-          Text(
-            text,
-            style: MarqueeTypography.meta.copyWith(
-              color: colorScheme.onSurfaceVariant,
+          if (size.showsRating) ...[
+            const SizedBox(height: 6),
+            Text(
+              ratingText,
+              style: MarqueeTypography.meta.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );

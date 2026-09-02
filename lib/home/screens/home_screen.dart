@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:kaisel/kaisel.dart';
 import 'package:marquee/auth/cubit/authentication_cubit.dart';
 import 'package:marquee/home/cubit/home_cubit.dart';
 import 'package:marquee/home/cubit/home_state.dart';
@@ -8,6 +9,7 @@ import 'package:marquee/home/widgets/home_header.dart';
 import 'package:marquee/home/widgets/home_navigation_bar.dart';
 import 'package:marquee/home/widgets/movies_grid.dart';
 import 'package:marquee/shared/marquee_theme.dart';
+import 'package:marquee/shared/navigation/marquee_route.dart';
 import 'package:material_ui/material_ui.dart';
 
 class const HomeScreen({super.key}) extends StatelessWidget {
@@ -64,7 +66,7 @@ class const HomeScreen({super.key}) extends StatelessWidget {
             children: [
               FeaturedMovieWidget(
                 movie: featured,
-                onDetails: _noDestinationYet,
+                onDetails: () => context.push(MovieDetailsRoute(featured)),
                 onFavorite: _noDestinationYet,
               ),
               const SizedBox(height: 24),
@@ -88,7 +90,10 @@ class const HomeScreen({super.key}) extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 12),
-              MoviesGrid(movies: popular),
+              MoviesGrid(
+                movies: popular,
+                onMovieTap: (movie) => context.push(MovieDetailsRoute(movie)),
+              ),
               const SizedBox(height: 20),
             ],
           ),

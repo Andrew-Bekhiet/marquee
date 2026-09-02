@@ -1,8 +1,8 @@
-import 'package:marquee/home/utils/movie_display.dart';
 import 'package:marquee/home/widgets/favorite_button.dart';
-import 'package:marquee/home/widgets/movie_card.dart';
-import 'package:marquee/home/widgets/movie_card_size.dart';
 import 'package:marquee/movies/models/movie.dart';
+import 'package:marquee/movies/utils/movie_display.dart';
+import 'package:marquee/movies/widgets/movie_card.dart';
+import 'package:marquee/movies/widgets/movie_card_size.dart';
 import 'package:marquee/shared/marquee_theme.dart';
 import 'package:material_ui/material_ui.dart';
 
