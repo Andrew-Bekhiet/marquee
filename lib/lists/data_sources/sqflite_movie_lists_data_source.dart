@@ -18,12 +18,6 @@ class SqfliteMovieListsDataSource(final Database _database)
       path,
       version: _databaseVersion,
       onCreate: (db, _) => _createMovieListEntries(db),
-      onUpgrade: (db, _, _) async {
-        await db.execute(
-          'DROP TABLE IF EXISTS ${_movieListEntriesSchema.tableName}',
-        );
-        await _createMovieListEntries(db);
-      },
     );
 
     return SqfliteMovieListsDataSource(database);
