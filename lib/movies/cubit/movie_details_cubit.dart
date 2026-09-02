@@ -102,12 +102,18 @@ class MovieDetailsCubit(
       if (isContained) {
         await _movieListsRepository.removeFromList(currentState.movie, list);
       } else {
-        await _movieListsRepository.addToList(currentState.movie, list);
+        await _movieListsRepository.addToList(
+          currentState.movie,
+          list,
+          removeFrom: list.exclusiveWithLists,
+        );
       }
 
       final containedInLists = isContained
           ? currentState.containedInLists.difference({list})
-          : currentState.containedInLists.union({list});
+          : currentState.containedInLists
+                .union({list})
+                .difference(list.exclusiveWithLists);
 
       emit(
         MovieDetailsLoaded(

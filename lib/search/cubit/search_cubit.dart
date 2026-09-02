@@ -83,7 +83,11 @@ class SearchCubit(
           MovieList.watchlist,
         );
       } else {
-        await _movieListsRepository.addToList(movie, MovieList.watchlist);
+        await _movieListsRepository.addToList(
+          movie,
+          MovieList.watchlist,
+          removeFrom: MovieList.watchlist.exclusiveWithLists,
+        );
       }
 
       final watchlistedIds = isWatchlisted

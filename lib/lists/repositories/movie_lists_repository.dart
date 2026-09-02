@@ -8,7 +8,11 @@ abstract class const MovieListsRepository() {
 
   Future<Set<MovieList>> getListsContainingMovie(Movie movie);
 
-  Future<void> addToList(Movie movie, MovieList list);
+  Future<void> addToList(
+    Movie movie,
+    MovieList list, {
+    Set<MovieList> removeFrom = const {},
+  });
 
   Future<void> removeFromList(Movie movie, MovieList list);
 

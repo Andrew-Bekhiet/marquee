@@ -34,15 +34,26 @@ class LocalMovieListsRepository(
       );
 
   @override
-  Future<void> addToList(Movie movie, MovieList list) =>
-      _catchAndConvertToDomainException(() async {
-        await _dataSource.addToList(
-          userId: _requireUserId(),
-          list: list,
-          movie: movie,
-        );
-        _changesSubject.add(null);
-      });
+  Future<void> addToList(
+    Movie movie,
+    MovieList list, {
+    Set<MovieList> removeFrom = const {},
+  }) => _catchAndConvertToDomainException(() async {
+    final userId = _requireUserId();
+
+    await Future.wait(
+      removeFrom.map(
+        (excluded) => _dataSource.removeFromList(
+          userId: userId,
+          list: excluded,
+          movieId: movie.id,
+        ),
+      ),
+    );
+
+    await _dataSource.addToList(userId: userId, list: list, movie: movie);
+    _changesSubject.add(null);
+  });
 
   @override
   Future<void> removeFromList(Movie movie, MovieList list) =>
