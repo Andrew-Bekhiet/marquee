@@ -1,5 +1,4 @@
 import 'package:boxy/boxy.dart';
-import 'package:flutter/foundation.dart';
 import 'package:marquee/home/widgets/circle_icon_button.dart';
 import 'package:marquee/home/widgets/favorite_button.dart';
 import 'package:marquee/movies/models/movie.dart';
@@ -21,16 +20,10 @@ class const MovieDetailsAppBar({
   required final VoidCallback onShare,
   super.key,
 }) extends StatelessWidget {
-  static const double _kWebExpandedHeight = 430;
-  static const double _kMobileExpandedHeight = 360;
-  static const double expandedHeight = kIsWeb
-      ? _kWebExpandedHeight
-      : _kMobileExpandedHeight;
-
   @override
   Widget build(BuildContext context) => SliverAppBar(
     pinned: true,
-    expandedHeight: expandedHeight,
+    expandedHeight: MovieAppBarBoxy.expandedHeight,
     automaticallyImplyLeading: false,
     backgroundColor: ColorScheme.of(context).surface,
     flexibleSpace: ClipRect(

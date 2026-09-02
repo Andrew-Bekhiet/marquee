@@ -31,6 +31,8 @@ class MovieAppBarBoxy({
   );
   static const Curve _primaryTintFade = Curves.easeInExpo;
 
+  static double get expandedHeight => _posterTop + _posterHeight;
+
   @override
   bool get needsCompositing => true;
 
