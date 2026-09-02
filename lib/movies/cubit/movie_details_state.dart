@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:marquee/lists/models/movie_list.dart';
 import 'package:marquee/movies/models/cast_member.dart';
 import 'package:marquee/movies/models/movie.dart';
 
@@ -15,15 +16,17 @@ final class const MovieDetailsLoaded({
   required super.movie,
   final List<CastMember> cast = const [],
   final List<Movie> similar = const [],
-  final bool isFavorite = false,
+  final Set<MovieList> containedInLists = const {},
   final bool hasPartialFailure = false,
 }) extends MovieDetailsState {
+  bool get isFavorite => containedInLists.contains(MovieList.favorites);
+
   @override
   List<Object?> get props => [
     movie,
     cast,
     similar,
-    isFavorite,
+    containedInLists,
     hasPartialFailure,
   ];
 }

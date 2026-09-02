@@ -1,6 +1,8 @@
 import 'package:boxy/boxy.dart';
 import 'package:kaisel/kaisel.dart';
+import 'package:marquee/home/widgets/favorite_button.dart';
 import 'package:marquee/movies/models/movie.dart';
+import 'package:marquee/movies/utils/movie_display.dart';
 import 'package:marquee/movies/widgets/movie_app_bar_boxy.dart';
 import 'package:marquee/movies/widgets/movie_card_size.dart';
 import 'package:marquee/movies/widgets/movie_hero_backdrop.dart';
@@ -71,6 +73,14 @@ class const MovieDetailsAppBarContent({
       iconSize: _iconSize,
     );
 
+    final titleStyle = textTheme.titleLarge?.copyWith(color: foregroundColor);
+    final titleText = Text(
+      movie.title,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: titleStyle,
+    );
+
     final metaParts = [
       if (movie.releaseDate case final releaseDate?) '${releaseDate.year}',
       if (movie.runtime case final runtime?) '$runtime MIN',
@@ -94,16 +104,19 @@ class const MovieDetailsAppBarContent({
         ),
         BoxyId(
           id: MovieAppBarSlot.poster,
-          child: Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(_posterRadius),
-              border: Border.all(
-                color: colorScheme.surface,
-                width: _posterBorderWidth,
+          child: Hero(
+            tag: movie.posterHeroTag,
+            child: Container(
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(_posterRadius),
+                border: Border.all(
+                  color: colorScheme.surface,
+                  width: _posterBorderWidth,
+                ),
               ),
+              child: MoviePosterImage(movie: movie, size: MovieCardSize.big),
             ),
-            child: MoviePosterImage(movie: movie, size: MovieCardSize.big),
           ),
         ),
         BoxyId(
@@ -123,11 +136,16 @@ class const MovieDetailsAppBarContent({
         ),
         BoxyId(
           id: MovieAppBarSlot.title,
-          child: Text(
-            movie.title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.titleLarge?.copyWith(color: foregroundColor),
+          child: Hero(
+            tag: movie.titleHeroTag,
+            flightShuttleBuilder: (_, _, _, _, _) => Material(
+              type: MaterialType.transparency,
+              child: DefaultTextStyle(
+                style: titleStyle ?? const TextStyle(),
+                child: titleText,
+              ),
+            ),
+            child: titleText,
           ),
         ),
         BoxyId(
@@ -152,11 +170,9 @@ class const MovieDetailsAppBarContent({
                 onPressed: onShare,
                 style: iconButtonStyle,
               ),
-              IconButton(
-                icon: Icon(Symbols.favorite, fill: isFavorite ? 1 : 0),
-                tooltip: 'Favourite',
-                color: colorScheme.primary,
-                onPressed: onFavorite,
+              FavoriteButton(
+                onFavorite: onFavorite,
+                isFavorite: isFavorite,
                 style: iconButtonStyle,
               ),
             ],

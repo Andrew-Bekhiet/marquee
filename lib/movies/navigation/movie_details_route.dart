@@ -6,8 +6,11 @@ final class MovieDetailsRoute(final Movie movie) extends MarqueeRoute {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create: (context) =>
-        MovieDetailsCubit(context.read<MoviesRepository>(), movie)..load(),
+    create: (context) => MovieDetailsCubit(
+      context.read<MoviesRepository>(),
+      context.read<MovieListsRepository>(),
+      movie,
+    )..load(),
     child: const MovieDetailsScreen(),
   );
 }

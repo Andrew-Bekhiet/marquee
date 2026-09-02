@@ -13,12 +13,17 @@ class const MovieCard({
 }) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final poster = Hero(
+      tag: movie.posterHeroTag,
+      child: MoviePosterImage(movie: movie, size: size),
+    );
+
     final posterImage = onTap == null
-        ? MoviePosterImage(movie: movie, size: size)
+        ? poster
         : InkWell(
             borderRadius: size.posterRadius,
             onTap: onTap,
-            child: MoviePosterImage(movie: movie, size: size),
+            child: poster,
           );
 
     final colorScheme = ColorScheme.of(context);
@@ -33,6 +38,13 @@ class const MovieCard({
       _ => '★ ${movie.ratingLabel} · ${movie.runtimeLabel}',
     };
 
+    final titleText = Text(
+      movie.title,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: textTheme.labelLarge,
+    );
+
     return SizedBox(
       width: size.posterWidth,
       child: Column(
@@ -40,12 +52,7 @@ class const MovieCard({
         children: [
           posterImage,
           const SizedBox(height: 6),
-          Text(
-            movie.title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.labelLarge,
-          ),
+          Hero(tag: movie.titleHeroTag, child: titleText),
           if (size.showsRating) ...[
             const SizedBox(height: 6),
             Text(

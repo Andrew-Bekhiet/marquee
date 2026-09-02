@@ -5,6 +5,7 @@ import 'package:material_ui/material_ui.dart';
 
 class const MoviesGrid({
   required final List<Movie> movies,
+  final bool shrinkWrap = false,
   final ValueChanged<Movie>? onMovieTap,
   super.key,
 }) extends StatelessWidget {
@@ -27,8 +28,8 @@ class const MoviesGrid({
     );
 
     return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: shrinkWrap,
+      physics: shrinkWrap ? const NeverScrollableScrollPhysics() : null,
       itemCount: movies.length,
       gridDelegate: gridDelegate,
       itemBuilder: (_, index) {

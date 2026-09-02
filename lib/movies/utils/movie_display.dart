@@ -23,4 +23,8 @@ extension MovieDisplay on Movie {
   };
 
   String get ratingLabel => voteAverage.toStringAsFixed(1);
+
+  String get posterHeroTag => 'movie-poster-$id';
+
+  String get titleHeroTag => 'movie-title-$id';
 }

@@ -10,6 +10,7 @@ class const FeaturedMovieWidget({
   required final Movie movie,
   required final VoidCallback onDetails,
   required final VoidCallback onFavorite,
+  required final bool isFavorite,
   super.key,
 }) extends StatelessWidget {
   static const double _metaLineHeight = 1.7;
@@ -39,11 +40,14 @@ class const FeaturedMovieWidget({
                   color: colorScheme.primary,
                 ),
               ),
-              Text(
-                movie.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: textTheme.titleLarge,
+              Hero(
+                tag: movie.titleHeroTag,
+                child: Text(
+                  movie.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: textTheme.titleLarge,
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +72,7 @@ class const FeaturedMovieWidget({
                   ),
                   FavoriteButton(
                     onFavorite: onFavorite,
-                    isFavorite: false,
+                    isFavorite: isFavorite,
                   ),
                 ],
               ),

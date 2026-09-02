@@ -6,6 +6,7 @@ import 'package:marquee/movies/widgets/movie_cast_avatar.dart';
 import 'package:marquee/movies/widgets/movie_details_section.dart';
 import 'package:marquee/movies/widgets/movie_empty_state.dart';
 import 'package:marquee/movies/widgets/movie_genre_chips.dart';
+import 'package:marquee/movies/widgets/movie_list_actions.dart';
 import 'package:marquee/movies/widgets/movie_overview.dart';
 import 'package:marquee/movies/widgets/similar_movies_row.dart';
 import 'package:marquee/shared/navigation/marquee_route.dart';
@@ -22,11 +23,6 @@ class const MovieDetailsBody({
     end: 16,
     bottom: 24,
   );
-  static const BorderRadius _buttonRadius = BorderRadius.all(
-    Radius.circular(11),
-  );
-  static const double _buttonHeight = 44;
-  static const double _iconSize = 16;
 
   @override
   Widget build(BuildContext context) {
@@ -44,44 +40,11 @@ class const MovieDetailsBody({
           mainAxisSize: MainAxisSize.min,
           spacing: 18,
           children: [
-            Row(
-              spacing: 8,
-              children: [
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: cubit.onWantToWatch,
-                    icon: const Icon(Symbols.add, size: _iconSize),
-                    label: const Text('Want to watch'),
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size.fromHeight(_buttonHeight),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: _buttonRadius,
-                      ),
-                      textStyle: textTheme.titleSmall,
-                    ),
-                  ),
-                ),
-                PopupMenuButton(
-                  style: IconButton.styleFrom(
-                    fixedSize: const Size.square(_buttonHeight),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: _buttonRadius,
-                    ),
-                    side: BorderSide(color: colorScheme.outline),
-                  ),
-                  iconSize: _iconSize,
-                  itemBuilder: (_) => [
-                    PopupMenuItem(
-                      onTap: cubit.onAddToWatched,
-                      child: const Text('Add to Watched'),
-                    ),
-                    PopupMenuItem(
-                      onTap: cubit.onAddToWatching,
-                      child: const Text('Add to watching'),
-                    ),
-                  ],
-                ),
-              ],
+            MovieListActions(
+              containedInLists: state.containedInLists,
+              onWantToWatch: cubit.onWantToWatch,
+              onAddToWatched: cubit.onAddToWatched,
+              onAddToWatching: cubit.onAddToWatching,
             ),
             if (genres.isNotEmpty) MovieGenreChips(genres: genres),
             MovieDetailsSection(
@@ -136,10 +99,7 @@ class const MovieDetailsBody({
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: onRetry,
-                    child: const Text('Retry'),
-                  ),
+                  TextButton(onPressed: onRetry, child: const Text('Retry')),
                 ],
               ),
           ],
