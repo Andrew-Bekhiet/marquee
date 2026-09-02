@@ -4,6 +4,9 @@ import 'package:marquee/auth/cubit/authentication_cubit.dart';
 import 'package:marquee/auth/repositories/auth_repository.dart';
 import 'package:marquee/auth/repositories/firebase_auth_repository.dart';
 import 'package:marquee/firebase_options.dart';
+import 'package:marquee/movies/api/tmdb_api.dart';
+import 'package:marquee/movies/repositories/movies_repository.dart';
+import 'package:marquee/movies/repositories/tmdb_movies_repository.dart';
 import 'package:marquee/shared/widgets/marquee_app.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -15,8 +18,15 @@ Future<void> main() async {
   );
 
   runApp(
-    RepositoryProvider<AuthRepository>(
-      create: (_) => FirebaseAuthRepository(),
+    MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<AuthRepository>(
+          create: (_) => FirebaseAuthRepository(),
+        ),
+        RepositoryProvider<MoviesRepository>(
+          create: (_) => TmdbMoviesRepository(TMDBApi()),
+        ),
+      ],
       child: BlocProvider(
         create: (context) =>
             AuthenticationCubit(context.read<AuthRepository>()),

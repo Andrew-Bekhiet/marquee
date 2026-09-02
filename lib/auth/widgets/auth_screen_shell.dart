@@ -1,5 +1,5 @@
+import 'package:marquee/shared/marquee_theme.dart';
 import 'package:marquee/shared/widgets/logo_widget.dart';
-import 'package:marquee/theme/marquee_theme.dart';
 import 'package:material_ui/material_ui.dart';
 
 class const AuthScreenShell({

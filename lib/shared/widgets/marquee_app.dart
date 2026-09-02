@@ -1,6 +1,6 @@
 import 'package:marquee/auth/cubit/authentication_cubit.dart';
+import 'package:marquee/shared/marquee_theme.dart';
 import 'package:marquee/shared/navigation/marquee_router.dart';
-import 'package:marquee/theme/marquee_theme.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
