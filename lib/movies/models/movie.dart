@@ -18,6 +18,7 @@ class const Movie({
   final bool video = false,
   final String? posterPath,
   final String? backdropPath,
+  @JsonKey(fromJson: _releaseDateFromJson, toJson: _releaseDateToJson)
   final DateTime? releaseDate,
   final List<int>? genreIds,
   final List<Genre>? genres,
@@ -33,3 +34,15 @@ class const Movie({
   String? backdropUrl({int width = 780}) =>
       TmdbImageUrl.forPath(backdropPath, width: width);
 }
+
+DateTime? _releaseDateFromJson(String? date) {
+  if (date == null || date.isEmpty) return null;
+
+  final year = int.tryParse(date);
+  if (year != null) return DateTime(year);
+
+  return DateTime.tryParse(date);
+}
+
+String? _releaseDateToJson(DateTime? date) =>
+    date?.toIso8601String().split('T').first;
