@@ -4,6 +4,12 @@
 
 A flutter project that displays movies from [The Movie Database](https://www.themoviedb.org/) (TMDB) API, with features like searching movies, adding to watchlists and favorites
 
+## Screenshots
+
+| Home                                                                                   | Movie Details                                                                          | Lists                                                                                  | Search                                                                                 |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| ![alt text](screenshots/simulator_screenshot_9B0CD786-E893-4A30-9C2F-E46809C8CD13.png) | ![alt text](screenshots/simulator_screenshot_840F3AB0-365B-4639-BE89-C7ADF52C99C7.png) | ![alt text](screenshots/simulator_screenshot_6632B0F9-47FD-47F8-98E9-5DB80468D6A2.png) | ![alt text](screenshots/simulator_screenshot_847C1E41-010C-48C2-A627-10D189E687C6.png) |
+
 ## Running the app
 
 1. Install [Flutter](https://docs.flutter.dev/install) 3.47 or newer and set up an Android or iOS device
